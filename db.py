@@ -7,6 +7,7 @@ from, plus a hash of that requirement's text. When a PRD is re-uploaded,
 we recompute hashes and flag any ticket whose source requirement changed.
 """
 
+import os
 import sqlite3
 import hashlib
 import json
@@ -14,6 +15,7 @@ from datetime import datetime
 from contextlib import contextmanager
 
 DB_PATH = "data/context_store.db"
+os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS prds (
